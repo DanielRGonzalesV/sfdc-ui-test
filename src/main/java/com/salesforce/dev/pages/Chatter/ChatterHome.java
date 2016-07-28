@@ -18,7 +18,8 @@ public class ChatterHome {
     @FindBy(className = "publisherattachtext ")
     WebElement postLink;
 
-    @FindBy(id = "publishereditablearea")
+    //@FindBy(id = "publishereditablearea")
+    @FindBy(css = ".chatterPublisherRTE.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders.placeholder")
     WebElement postDescField;
 
     @FindBy(id = "publishersharebutton")
@@ -59,10 +60,16 @@ public class ChatterHome {
         postLink.click();
         return this;
     }
+    
+    @FindBy(css = ".cke_wysiwyg_frame.cke_reset")
+    private WebElement richTextEditorFrame;
+    
     public ChatterHome setPost(String PostDesc){
+        driver.switchTo().frame(richTextEditorFrame);
         wait.until(ExpectedConditions.visibilityOf(postDescField));
         postDescField.clear();
         postDescField.sendKeys(PostDesc);
+        driver.switchTo().defaultContent();
         return  this;
     }
 
@@ -105,6 +112,7 @@ public class ChatterHome {
     }
     public boolean VerifyPostCreated(String post){
         try{
+            //feeditemtext cxfeeditemtext
             WebElement postValuePage= driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + post + "')]"));
                     wait.until(ExpectedConditions.visibilityOf(postValuePage));
             return true;

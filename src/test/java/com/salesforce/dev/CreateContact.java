@@ -26,6 +26,7 @@ import org.testng.annotations.Test;
 public class CreateContact {
 
     private static final Logger LOGGER = Logger.getLogger(CreateContact.class.getName());
+
     private ContactsHome contactsHome;
 
     private ContactDetail contactDetail;
@@ -58,7 +59,6 @@ public class CreateContact {
         accountForm.setAccountNameFld(accountName);
         accountDetail = accountForm.clickSaveBtn();
         mainPage = accountDetail.gotoMainPage();
-
     }
 
     @Test(groups = {"Acceptance"})
@@ -81,13 +81,13 @@ public class CreateContact {
         contactForm.setTitle(contact.getTitle())
                 .setDepartment(contact.getDepartment());
 
-
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());
         contactForm = searchLookup.goToContactForm();
 
         contactForm.setLeadSource(contact.getLeadSource())
                 .setPhone(contact.getPhone())
+                .setBirthDate(6, 6, 2015)
                 .setHomePhone(contact.getHomePhone())
                 .setMobile(contact.getMobile())
                 .setOtherPhone(contact.getOtherPhone())
@@ -113,7 +113,6 @@ public class CreateContact {
 
         LOGGER.info("Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
-
     }
 
     @AfterMethod(groups = {"Acceptance"})

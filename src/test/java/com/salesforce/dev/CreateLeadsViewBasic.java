@@ -1,7 +1,5 @@
 package com.salesforce.dev;
 
-import java.util.Iterator;
-
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -11,23 +9,34 @@ import com.salesforce.dev.pages.Leads.LeadView;
 import com.salesforce.dev.pages.Leads.LeadViewDetail;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Iterator;
 
 /**
  * Created by Ariel Mattos on 06/09/2015.
  */
 public class CreateLeadsViewBasic {
+
     private static final Logger LOGGER = Logger.getLogger(CreateLeadsViewBasic.class.getName());
-    HomePage homePage;
-    MainPage mainPage;
-    NavigationBar navBar;
-    LeadsHome leadsHome;
-    LeadView leadView;
-    LeadViewDetail leadViewDetail;
+
+    private HomePage homePage;
+
+    private MainPage mainPage;
+
+    private NavigationBar navBar;
+
+    private LeadsHome leadsHome;
+
+    private LeadView leadView;
+
+    private LeadViewDetail leadViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -35,10 +44,16 @@ public class CreateLeadsViewBasic {
         return dataDrivenManager.getDataView("CreateLeadsViewBasic.json");
     }
 
+    @BeforeMethod(groups = {"Acceptance"})
+    public void setUp() {
+
+        homePage = new HomePage();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        navBar = mainPage.gotoNavBar();
+    }
+
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateLeadView(ViewSalesForce viewSalesForce) {
-        mainPage = LoginPage.loginAsPrimaryUser();
-        navBar = mainPage.gotoNavBar();
         leadsHome = navBar.gotToLeadsHome();
         leadView = leadsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())

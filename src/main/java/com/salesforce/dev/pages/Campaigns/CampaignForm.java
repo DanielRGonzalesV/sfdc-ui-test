@@ -11,6 +11,8 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
@@ -167,5 +169,12 @@ public class CampaignForm extends FormBase {
     public CampaignForm setDescription(String text) {
         fillTextBox(descriptionFld, text);
         return this;
+    }
+
+    @FindBy(className = "detailList")
+    private WebElement panel;
+    public void clickPanel() {
+        
+        clickWebElement(panel);
     }
 }

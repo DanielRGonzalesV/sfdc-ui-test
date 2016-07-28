@@ -25,30 +25,26 @@ import org.testng.annotations.Test;
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
     private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewFiltersFieldsAdded.class.getName());
-    private OpportunitiesHome opportunitiesHome;
-    private OpportunityView opportunityView;
-    private MainPage mainPage;
     private NavigationBar navigationBar;
     private OpportunityViewDetail opportunityViewDetail;
-    private HomePage homePage;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
     }
+
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        HomePage homePage = new HomePage();
+        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateOpportunityViewWithFilters(ViewSalesForce viewSalesForce) {
-        opportunitiesHome = navigationBar.goToOpportunitiesHome();
-        opportunityView = opportunitiesHome.clickNewViewLnk()
+        OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
+        OpportunityView opportunityView = opportunitiesHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
@@ -56,8 +52,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
         int count = 1;
         for (FilterView addFilter : additionalField) {
-            opportunityView = opportunityView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
+            opportunityView = opportunityView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(), addFilter.getOperatorFilter(), addFilter.getValueFilter());
             count++;
         }
         List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
@@ -66,9 +61,6 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         opportunityViewDetail = opportunityView.clickSaveBtn();
         LOGGER.info("Opportunity view was created");
         Assert.assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
-        for (FieldToDisplayView fields : fieldToDisplayViews) {
-            Assert.assertTrue(opportunityViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
-        }
     }
 
     @AfterMethod(groups = {"Regression"})

@@ -15,11 +15,12 @@ import java.io.IOException;
  */
 public class JSONMapper {
 
-    public static Opportunity getOpportunity(String jsonFile){
+    public static Opportunity getOpportunity(String fileJson){
         Opportunity opportunity = new Opportunity();
+        final String pathFileJson = "src/test/resources/" + fileJson;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            opportunity = mapper.readValue(new File(jsonFile), Opportunity.class);
+            opportunity = mapper.readValue(new File(pathFileJson), Opportunity.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

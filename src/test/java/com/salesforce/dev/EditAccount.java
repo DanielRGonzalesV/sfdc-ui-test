@@ -25,34 +25,32 @@ public class EditAccount {
     private NavigationBar navigationBar;
     private AccountsHome accountsHome;
     private AccountForm accountForm;
-    private String accountName ="AccountName";
+    private String accountName = "AccountName";
 
-
-    private String accountNameUpdated ="AccountUpdated";
-    private String accountDesc ="Account Description";
-    private String rating ="Hot"; //--None--, Hot, Warm, Cold
-    private String ownership ="Private"; //--None--, Private, Public, Subsidiary, Other
-    private String phone ="+(591)72356852";
-    private String fax ="+(591)72356852";
-    private String number ="123456";
-    private String website ="http://test.jalasoft.com";
-    private String accountSite ="accountTest";
-    private String tickerSymbol ="Ticker Simbol";
-    private String type ="Prospect"; //--None--, Prospect, Customer - Direct, Customer - Channel, Channel Partner / Reseller, Installation Partner, Technology Partner, Other
+    private String accountNameUpdated = "AccountUpdated";
+    private String accountDesc = "Account Description";
+    private String rating = "Hot"; //--None--, Hot, Warm, Cold
+    private String ownership = "Private"; //--None--, Private, Public, Subsidiary, Other
+    private String phone = "+(591)72356852";
+    private String fax = "+(591)72356852";
+    private String number = "123456";
+    private String website = "http://test.jalasoft.com";
+    private String accountSite = "accountTest";
+    private String tickerSymbol = "Ticker Simbol";
+    private String type = "Prospect"; //--None--, Prospect, Customer - Direct, Customer - Channel, Channel Partner / Reseller, Installation Partner, Technology Partner, Other
     private String industry = "Technology"; //Several items
     private Integer employees = 1234;
     private Integer annualRevenue = 4566;
     private String sicCode = "ABCDE";
     private String billingAddress = "Billing Address";
     private String shippingAddress = "Shipping Address";
-    private String customerPriority= "High"; //Selected Item
-    private String sla= "Gold"; //Selected Item
-    private String upsellOpportunity= "Yes"; //Selected Item
+    private String customerPriority = "High"; //Selected Item
+    private String sla = "Gold"; //Selected Item
+    private String upsellOpportunity = "Yes"; //Selected Item
     private String active = "Yes";
     private String slaExpirationDate = "12/31/2015";
-    private String slaSerialNumber= "123-456-78";
+    private String slaSerialNumber = "123-456-78";
     private Integer numberOfLocations = 789;
-
 
 
     @BeforeMethod(groups = {"Acceptance"})
@@ -60,22 +58,16 @@ public class EditAccount {
         homePage = new HomePage();
         mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
-//        mainPage = Transporter.driverMainPage();
-//
-//        navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
         accountForm.setAccountNameFld(accountName);
         accountDetail = accountForm.clickSaveBtn();
-
-
         mainPage = accountDetail.gotoMainPage();
-
+        navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"})
     public void testEditAccount() {
-        navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountForm = accountDetail.clickEditBtn();

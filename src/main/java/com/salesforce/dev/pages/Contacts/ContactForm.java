@@ -180,7 +180,7 @@ public class ContactForm extends FormBase {
     }
 
     public ContactForm setLeadSource(String text) {
-//        selectItemComboBox(leadSourceSelect, text);
+        selectItemComboBox(leadSourceSelect, text);
         return this;
     }
 

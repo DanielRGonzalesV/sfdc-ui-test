@@ -41,6 +41,7 @@ public class CampaignGenie {
             listData.add(iteratorCampaignData.next());
         }
         Campaign campaign = listData.get(0)[0];
+        System.out.println(campaign);
         return campaign;
     }
 

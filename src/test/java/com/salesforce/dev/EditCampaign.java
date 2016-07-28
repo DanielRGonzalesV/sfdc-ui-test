@@ -10,7 +10,7 @@ import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.apache.log4j.Logger;
@@ -51,13 +51,15 @@ public class EditCampaign {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
+        
         ///create campaign
         Campaign campaign = CampaignGenie.getCampaign();
         //create parent Campaign
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
         campaignNameToUpdated = campaign.getCampaignName();
         campaignParentName = campaign.getParentCampaign();
-        mainPage = LoginPage.loginAsPrimaryUser();
+        homePage = new HomePage();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -75,7 +77,7 @@ public class EditCampaign {
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditCampaign(Campaign campaign) {
-        mainPage = LoginPage.loginAsPrimaryUser();
+       // mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
 
@@ -87,6 +89,7 @@ public class EditCampaign {
         campaignForm.setStatusSelect(campaign.getCampaignStatus());
         campaignForm.setStartDate(campaign.getStartDate());
         campaignForm.setEndDate(campaign.getEndDate());
+        campaignForm.clickPanel();
         campaignForm.setExpectedRevenue(campaign.getExpectedRevenue());
         campaignForm.setBudgetedCost(campaign.getBudgetedCost());
         campaignForm.setActualCost(campaign.getActualCost());
@@ -105,7 +108,6 @@ public class EditCampaign {
         Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
         Assert.assertTrue(campaignDetail.validateCampaignParent(campaign.getParentCampaign()));
         LOGGER.info("Campaign has been updated");
-
     }
 
     @AfterMethod(groups = {"Acceptance"})

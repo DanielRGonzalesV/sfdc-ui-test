@@ -1,8 +1,5 @@
 package com.salesforce.dev;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
@@ -18,11 +15,15 @@ import com.salesforce.dev.pages.Contacts.ContactViewDetail;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
+
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Iterator;
+import java.util.List;
 
 import static org.testng.Assert.assertFalse;
 
@@ -30,18 +31,25 @@ import static org.testng.Assert.assertFalse;
  * Created by Alexander Apaza on 6/12/2015.
  */
 public class CreateContactView {
+
     private static final Logger LOGGER = Logger.getLogger(CreateContactView.class.getName());
+
     private ContactsHome contactHome;
+
     private ContactView contactView;
+
     private HomePage homePage;
+
     private ContactViewDetail contactViewDetail;
 
     private CampaignsHome campaignsHome;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
-    private CampaignView campaignView;
+
     private String campaignName;
-    private CampaignViewDetail campaignViewDetail;
+
     private CampaignForm campaignForm;
 
     @DataProvider(name = "dataDriven")
@@ -63,9 +71,8 @@ public class CreateContactView {
         campaignForm.clickSaveBtn();
     }
 
-
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
-    public void testCreateContactView(ViewSalesForce viewSalesForce){
+    public void testCreateContactView(ViewSalesForce viewSalesForce) {
         contactHome = navigationBar.goToContactsHome();
         contactView = contactHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
@@ -89,7 +96,6 @@ public class CreateContactView {
         contactViewDetail = contactView.clickSaveBtn();
         LOGGER.info("Contact was created");
         assertFalse(contactViewDetail.validateNameView("AnyName"));
-
     }
 
     @AfterMethod(groups = {"Acceptance"})
