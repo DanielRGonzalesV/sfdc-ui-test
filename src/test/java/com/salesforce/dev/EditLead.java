@@ -1,5 +1,6 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -30,13 +31,9 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
-//        ///create campaign
-//        campaign= CampaignGenie.getCampaign();
-//        //create parent Campaign
-//        CampaignGenie.createParentCampaign(campaign.getParentCampaign());
-//
-//        lead = JSONMapper.getLead("src/test/resources/CreateLeadBase.json");
-//        leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
+
+        lead = JSONMapper.getLead("src/test/resources/CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
 
         //Creating a lead
         Common.createLead(lead);
@@ -80,25 +77,5 @@ public class EditLead {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(leadEditEnum.lastName);
         leadDetail.deleteLead();
-//
-//        // Borrar campaign
-//        CampaignsHome campaignsHome;
-//        campaignsHome = mainPage.gotoNavBar().goToCampaignsHome();
-//        String campaignNameToUpdated = campaign.getCampaignName();
-//        String campaignParentName = campaign.getParentCampaign();
-//        CampaignDetail campaignDetail = campaignsHome.selectRecentItem (campaignNameToUpdated);
-//        campaignDetail.clickDeleteBtn(true);
-//        LOGGER.info ("Campaign was deleted");
-//        mainPage = campaignDetail.gotoMainPage();
-//        NavigationBar navigationBar = mainPage.gotoNavBar ();
-//        campaignsHome = navigationBar.goToCampaignsHome();
-//        campaignDetail = campaignsHome.selectRecentItem(campaignParentName );
-//        campaignDetail.clickDeleteBtn(true);
-//        LOGGER.info ("Campaign Parent was deleted");
-
-
-
-
-
     }
 }
