@@ -49,4 +49,7 @@ public class Lead {
 
     public Lead(){}
 
+    public String getLastName(){return this.lastName;}
+    public String getCompany(){return this.company;}
+    public String getLeadStatus(){return this.leadStatus;}
 }

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.framework.Objects.Chatter;
+import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -116,6 +117,36 @@ public class DataDrivenManager {
         }
         return campaignsArray.iterator();
     }
+
+    public Iterator<Lead[]> getLead(String fileJson) {
+
+        Collection<Lead[]> leadArray = new ArrayList<Lead[]>();
+        try {
+            parser = new JSONParser();
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
+            JSONArray jsonArray = (JSONArray) jsonObject;
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            List<Lead> navigation = objectMapper.readValue(jsonArray.toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(
+                            List.class, Lead.class));
+
+            for (int i = 0; i < navigation.size(); i++) {
+                Lead lead = (Lead) navigation.get(i);
+                leadArray.add(new Lead[]{lead});
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.error("Error on data for Campaign from Json file:", e);
+        } catch (ParseException e) {
+            LOGGER.error("Error on data for Campaign from Json file:", e);
+        }
+        return leadArray.iterator();
+    }
+
 
     /*Returns chatter properties
     * @param fileJson

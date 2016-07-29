@@ -13,120 +13,120 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LeadForm extends FormBase {
 
-    @FindBy(id = "lea16city")
-    @CacheLookup
-    private WebElement city;
-
-    @FindBy(id = "lea16country")
-    @CacheLookup
-    private WebElement country;
-
     /*Lead Information*/
     @FindBy(id = "name_salutationlea2")
     @CacheLookup
-    private WebElement nameSalutation;
+    WebElement nameSalutation;
 
     @FindBy(id = "name_firstlea2")
     @CacheLookup
-    private WebElement firstName;
+    WebElement firstName;
 
     @FindBy(id = "name_lastlea2")
     @CacheLookup
-    private WebElement lastName;
+    WebElement lastName;
 
     @FindBy(id = "lea3")
     @CacheLookup
-    private WebElement company;
+    WebElement company;
 
     @FindBy(id = "lea4")
     @CacheLookup
-    private WebElement title;
+    WebElement title;
 
     @FindBy(id = "lea5")
     @CacheLookup
-    private WebElement leadSource;
+    WebElement leadSource;
 
     @FindBy(id = "lea20")
     @CacheLookup
-    private WebElement campaign;
+    WebElement campaign;
 
     @FindBy(xpath = "//img[@alt='Campaign Lookup (New Window)']")
     @CacheLookup
-    private WebElement campaingLookup;
+    WebElement campaingLookup;
 
     @FindBy(id = "lea6")
     @CacheLookup
-    private WebElement industry;
+    WebElement industry;
 
     @FindBy(id = "lea7")
     @CacheLookup
-    private WebElement annualRevenue;
+    WebElement annualRevenue;
 
     @FindBy(id = "lea8")
     @CacheLookup
-    private WebElement phone;
+    WebElement phone;
 
     @FindBy(id = "lea9")
     @CacheLookup
-    private WebElement mobile;
+    WebElement mobile;
 
     @FindBy(id = "lea10")
     @CacheLookup
-    private WebElement fax;
+    WebElement fax;
 
     @FindBy(id = "lea11")
     @CacheLookup
-    private WebElement email;
+    WebElement email;
 
     @FindBy(id = "lea12")
     @CacheLookup
-    private WebElement website;
+    WebElement website;
 
     @FindBy(id = "lea13")
     @CacheLookup
-    private WebElement leadStatus;
+    WebElement leadStatus;
 
     @FindBy(id = "lea14")
     @CacheLookup
-    private WebElement rating;
+    WebElement rating;
 
     @FindBy(id = "lea15")
     @CacheLookup
-    private WebElement numEmployees;
+    WebElement numEmployees;
 
     /*Address Information*/
     @FindBy(id = "lea16street")
     @CacheLookup
-    private WebElement street;
+    WebElement street;
+
+    @FindBy(id = "lea16city")
+    @CacheLookup
+    WebElement city;
 
     @FindBy(id = "lea16state")
     @CacheLookup
-    private WebElement state;
+    WebElement state;
 
     @FindBy(id = "lea16zip")
     @CacheLookup
-    private WebElement zipCode;
+    WebElement zipCode;
+
+    @FindBy(id = "lea16country")
+    @CacheLookup
+    WebElement country;
 
     /*additional information*/
     @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::span/select")
     @CacheLookup
-    private WebElement productInterest;
+    WebElement productInterest;
 
     @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::input")
     @CacheLookup
-    private WebElement SICcode;
+    WebElement SICcode;
 
     @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::input")
     @CacheLookup
-    private WebElement numLocations;
+    WebElement numLocations;
 
     @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::input")
     @CacheLookup
-    private WebElement currentGenerators;
+    WebElement currentGenerators;
 
     @FindBy(xpath = "//td[contains(.,'Primary')]/following::span/select")
     @CacheLookup
-    private WebElement primary;
+    WebElement primary;
 
     /*Others*/
     @FindBy(id = "lea17")
@@ -137,219 +137,264 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement assignRule;
 
-    public LeadForm() {
+    public LeadForm () {
 
     }
 
-    public LeadForm(LeadBuilder builder) {
+    public LeadForm (LeadBuilder builder) {
 
 
         //setting the mandatory fields
-        this.setLastName(builder.lastName);
-        this.setCompany(builder.company);
-        this.selectLeadStatusByVisibleText(builder.leadStatus);
+        this.setLastName (builder.lastName);
+        this.setCompany (builder.company);
+        this.selectLeadStatusByVisibleText (builder.leadStatus);
 
         //setting Lead Information
-        this.setTitle(builder.title);
+        this.setTitle (builder.title);
 
-        this.selectNameSalutationByVisibleText(builder.salutation);
-        this.setFirstName(builder.firstName);
-        this.selectLeadSourceByVisibleText(builder.leadSource);
-        this.setCampaign(builder.campaign);
-        this.selectCampaignLookup(builder.campaign);
-        this.selectIndustryByVisibleText(builder.industry);
-        this.setAnnualRevenue(builder.annualRevenue);
-        this.setPhone(builder.phone);
-        this.setMobile(builder.mobile);
-        this.setFax(builder.fax);
-        this.setEmail(builder.email);
-        this.setWebsite(builder.website);
-        this.selectRatingByVisibleText(builder.rating);
-        this.setNumEmployees(builder.numEmployees);
+        this.selectNameSalutationByVisibleText (builder.salutation);
+        this.setFirstName (builder.firstName);
+        this.selectLeadSourceByVisibleText (builder.leadSource);
+        this.setCampaign (builder.campaign);
+        this.selectCampaignLookup (builder.campaign);
+        this.selectIndustryByVisibleText (builder.industry);
+        this.setAnnualRevenue (builder.annualRevenue);
+        this.setPhone (builder.phone);
+        this.setMobile (builder.mobile);
+        this.setFax (builder.fax);
+        this.setEmail (builder.email);
+        this.setWebsite (builder.website);
+        this.selectRatingByVisibleText (builder.rating);
+        this.setNumEmployees (builder.numEmployees);
 
         //address information
-        this.setStreet(builder.street);
-        this.setCity(builder.city);
-        this.setState(builder.stateProvince);
-        this.setZipCode(builder.zipPostalCode);
-        this.setCountry(builder.country);
+        this.setStreet (builder.street);
+        this.setCity (builder.city);
+        this.setState (builder.stateProvince);
+        this.setZipCode (builder.zipPostalCode);
+        this.setCountry (builder.country);
 
         //additional information
-        this.selectProductInterestByVisibleText(builder.productInterest);
-        this.setSICcode(builder.SICcode);
-        this.setNumLocations(builder.numberLocations);
-        this.setCurrentGenerators(builder.currentGenerators);
-        this.selectPrimaryByVisibleText(builder.primary);
-        this.setDescription(builder.description);
-        this.setAssignRuleCheckBox(builder.asignRule);
+        this.selectProductInterestByVisibleText (builder.productInterest);
+        this.setSICcode (builder.SICcode);
+        this.setNumLocations (builder.numberLocations);
+        this.setCurrentGenerators (builder.currentGenerators);
+        this.selectPrimaryByVisibleText (builder.primary);
+        this.setDescription (builder.description);
+        this.setAssignRuleCheckBox (builder.asignRule);
     }
-
 
     //Lead information
-    public void setLastName(String lastName) {
+    public void setLastName (String lastName) {
         if (lastName != null) {
-            fillTextBox(this.lastName, lastName);
+            fillTextBox (this.lastName, lastName);
         }
     }
 
-    public void setCompany(String company) {
+    public void setCompany (String company) {
         if (company != null) {
-            fillTextBox(this.company, company);
+            fillTextBox (this.company, company);
         }
     }
 
-    public void setTitle(String title) {
+    public void setTitle (String title) {
         if (title != null) {
-            fillTextBox(this.title, title);
+            fillTextBox (this.title, title);
         }
     }
 
     /*Lead Information*/
-    public void selectNameSalutationByVisibleText(String salutation) {
+    public void selectNameSalutationByVisibleText (String salutation) {
         if (salutation != null) {
-            selectItemComboBox(nameSalutation, salutation);
+            selectItemComboBox (nameSalutation, salutation);
         }
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName (String firstName) {
         if (firstName != null) {
-            fillTextBox(this.firstName, firstName);
+            fillTextBox (this.firstName, firstName);
         }
     }
 
-    public void selectLeadSourceByVisibleText(String leadSource) {
+    public void selectLeadSourceByVisibleText (String leadSource) {
         if (leadSource != null) {
-            selectItemComboBox(this.leadSource, leadSource);
+            selectItemComboBox (this.leadSource, leadSource);
         }
     }
 
-    public void setCampaign(String campaign) {
+    public void setCampaign (String campaign) {
         if (campaign != null) {
-            fillTextBox(this.campaign, campaign);
+            fillTextBox (this.campaign, campaign);
         }
     }
 
-    public void selectCampaignLookup(String campaignLookup) {
+    public void selectCampaignLookup (String campaignLookup) {
         if (campaignLookup != null) {
-            campaingLookup.click();
-            SearchLookupBase searchLookup = new SearchLookupBase();
-            searchLookup.searchText(campaignLookup);
+            campaingLookup.click ();
+            SearchLookupBase searchLookup = new SearchLookupBase ();
+            searchLookup.searchText (campaignLookup);
         }
     }
 
-    public void selectIndustryByVisibleText(String industry) {
-        selectItemComboBox(this.industry, industry);
+
+    public void selectIndustryByVisibleText (String industry) {
+        if (industry != null) {
+            selectItemComboBox (this.industry, industry);
+        }
     }
 
-    public void setAnnualRevenue(String annualRevenue) {
-        fillTextBox(this.annualRevenue, annualRevenue);
+    public void setAnnualRevenue (String annualRevenue) {
+        if (annualRevenue != null) {
+            fillTextBox (this.annualRevenue, annualRevenue);
+        }
     }
 
-    public void setPhone(String phone) {
-        fillTextBox(this.phone, phone);
+    public void setPhone (String phone) {
+        if (phone != null) {
+            fillTextBox (this.phone, phone);
+        }
     }
 
-    public void setMobile(String mobile) {
-        fillTextBox(this.mobile, mobile);
+    public void setMobile (String mobile) {
+        if (mobile != null) {
+            fillTextBox (this.mobile, mobile);
+        }
     }
 
-    public void setFax(String fax) {
-        fillTextBox(this.fax, fax);
+    public void setFax (String fax) {
+        if (fax != null) {
+            fillTextBox (this.fax, fax);
+        }
     }
 
-    public void setEmail(String email) {
-        fillTextBox(this.email, email);
+    public void setEmail (String email) {
+        if (email != null) {
+            fillTextBox (this.email, email);
+        }
     }
 
-    public void setWebsite(String website) {
-        fillTextBox(this.website, website);
+    public void setWebsite (String website) {
+        if (website != null) {
+            fillTextBox (this.website, website);
+        }
     }
 
 
-    public void selectRatingByVisibleText(String rating) {
-        selectItemComboBox(this.rating, rating);
+    public void selectRatingByVisibleText (String rating) {
+        if (rating != null) {
+            selectItemComboBox (this.rating, rating);
+        }
     }
 
-    public void setNumEmployees(String numEmployees) {
-        fillTextBox(this.numEmployees, numEmployees);
+    public void setNumEmployees (String numEmployees) {
+        if (numEmployees != null) {
+            fillTextBox (this.numEmployees, numEmployees);
+        }
     }
 
     /*Address Information*/
-    public void setStreet(String street) {
-        fillTextBox(this.street, street);
-    }
-
-    public void setCity(String city) {
-        fillTextBox(this.city, city);
-    }
-
-    public void setState(String state) {
-        fillTextBox(this.state, state);
-    }
-
-    public void setZipCode(String zipCode) {
-        fillTextBox(this.zipCode, zipCode);
-    }
-
-    public void setCountry(String country) {
-        fillTextBox(this.country, country);
-    }
-
-    /*additional information*/
-    public void selectProductInterestByVisibleText(String productInterest) {
-        selectItemComboBox(this.productInterest, productInterest);
-    }
-
-    public void setSICcode(String SICcode) {
-        fillTextBox(this.SICcode, SICcode);
-    }
-
-    public void setNumLocations(String numLocations) {
-        fillTextBox(this.numLocations, numLocations);
-    }
-
-    public void setCurrentGenerators(String currentGenerators) {
-        fillTextBox(this.currentGenerators, currentGenerators);
-    }
-
-    public void selectPrimaryByVisibleText(String primary) {
-        selectItemComboBox(this.primary, primary);
-    }
-
-    public void setDescription(String description) {
-        fillTextBox(this.description, description);
-    }
-
-    public void setAssignRuleCheckBox(boolean assignRule) {
-
-        if (assignRule) {
-            if (!this.assignRule.isSelected()) {
-                this.assignRule.click();
-            }
-        } else {
-            if (this.assignRule.isSelected()) {
-                this.assignRule.click();
-            }
+    public void setStreet (String street) {
+        if (street != null) {
+            fillTextBox (this.street, street);
         }
     }
 
-    public void selectLeadStatusByVisibleText(String leadStatus) {
-        selectItemComboBox(this.leadStatus, leadStatus);
+    public void setCity (String city) {
+        if (city != null) {
+            fillTextBox (this.city, city);
+        }
     }
 
-    public LeadDetail clickSaveBtn() {
-        super.clickSaveButton();
-        return new LeadDetail();
+    public void setState (String state) {
+        if (state != null) {
+            fillTextBox (this.state, state);
+        }
     }
 
-    public LeadForm clickSaveNewBtn() {
-        super.clickSaveNewButton();
-        return new LeadForm();
+    public void setZipCode (String zipCode) {
+        if (zipCode != null) {
+            fillTextBox (this.zipCode, zipCode);
+        }
     }
 
-    public LeadsHome clickCancelBtn() {
-        super.clickCancelButton();
-        return new LeadsHome();
+    public void setCountry (String country) {
+        if (country != null) {
+            fillTextBox (this.country, country);
+        }
     }
+
+    /*additional information*/
+    public void selectProductInterestByVisibleText (String productInterest) {
+        if (productInterest != null) {
+            selectItemComboBox (this.productInterest, productInterest);
+
+        }
+    }
+
+    public void setSICcode (String SICcode) {
+        if (SICcode != null) {
+            fillTextBox (this.SICcode, SICcode);
+        }
+
+    }
+
+    public void setNumLocations (String numLocations) {
+        if (numLocations != null) {
+            fillTextBox (this.numLocations, numLocations);
+        }
+    }
+
+    public void setCurrentGenerators (String currentGenerators) {
+        if (currentGenerators != null) {
+            fillTextBox (this.currentGenerators, currentGenerators);
+        }
+    }
+
+    public void selectPrimaryByVisibleText (String primary) {
+        if (primary != null) {
+            selectItemComboBox (this.primary, primary);
+
+        }
+    }
+
+    public void setDescription (String description) {
+        if (description != null) {
+            fillTextBox (this.description, description);
+        }
+    }
+
+    public void setAssignRuleCheckBox (boolean assignRule) {
+
+        if (assignRule) {
+            if (!this.assignRule.isSelected ()) {
+                this.assignRule.click ();
+            }
+        } else {
+            if (this.assignRule.isSelected ()) {
+                this.assignRule.click ();
+            }
+        }
+
+    }
+
+    public void selectLeadStatusByVisibleText (String leadStatus) {
+        selectItemComboBox (this.leadStatus, leadStatus);
+    }
+
+    public LeadDetail clickSaveBtn () {
+        super.clickSaveButton ();
+        return new LeadDetail ();
+    }
+
+    public LeadForm clickSaveNewBtn () {
+        super.clickSaveNewButton ();
+        return new LeadForm ();
+    }
+
+    public LeadsHome clickCancelBtn () {
+        super.clickCancelButton ();
+        return new LeadsHome ();
+    }
+
 
 }
